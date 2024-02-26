@@ -4,9 +4,9 @@ from reportlab.pdfgen import canvas
 from datetime import datetime
 import requests
 
-def generar_pdf_service(inicio, fin, area, pdf):
+def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
 
-    url = f"http://172.206.234.125:3500/input-controls/obtener-padron-estudiantes/{inicio}/{fin}/{area}"
+    url = f"http://172.206.234.125:3500/input-controls/obtener-padron-estudiantes?id_proceso={id_proceso}&inicio={inicio}&fin={fin}&area={area}&aula={aula}&fecha={fecha}&sede={sede}"
     # url = f"http://localhost:3500/input-controls/obtener-padron-estudiantes/{inicio}/{fin}/{area}"
 
     print("PRINT UTILLLLLLL =====================>",url)
