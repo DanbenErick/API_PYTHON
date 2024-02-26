@@ -21,7 +21,8 @@ async def root():
 
 nombre_temporal = int(time.time() * 1000)
 @app.get('/generar-pdf')
-async def generar_pdf(inicio: int, fin: int, area: int, aula: Optional[str] = None, pdf: Optional[str] = nombre_temporal):
+
+async def generar_pdf(id_proceso: int, inicio: int, fin: int, area: int, fecha: str, sede: str, aula: Optional[str] = None, pdf: Optional[str] = nombre_temporal):
     # if not pdf:
     #     pdf = "output"
     try:
