@@ -26,7 +26,7 @@ async def generar_pdf(id_proceso: int, inicio: int, fin: int, area: int, fecha: 
     # if not pdf:
     #     pdf = "output"
     try:
-        pdf_path = generar_pdf_service(inicio, fin, area, pdf)
+        pdf_path = generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf)
         return FileResponse(pdf_path, media_type='application/pdf', filename=pdf_path)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
