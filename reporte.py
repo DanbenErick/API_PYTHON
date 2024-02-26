@@ -6,7 +6,7 @@ import requests
 
 def generar_pdf_service(inicio, fin, area, pdf):
 
-    url = f"https://api-zszn.onrender.com/input-controls/obtener-padron-estudiantes/{inicio}/{fin}/{area}"
+    url = f"http://172.206.234.125:3500/input-controls/obtener-padron-estudiantes/{inicio}/{fin}/{area}"
     # url = f"http://localhost:3500/input-controls/obtener-padron-estudiantes/{inicio}/{fin}/{area}"
 
     print("PRINT UTILLLLLLL =====================>",url)
