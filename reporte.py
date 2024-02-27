@@ -11,6 +11,8 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
 
     print("PRINT UTILLLLLLL =====================>",url)
 
+    
+
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -31,7 +33,12 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
 
     for i, data in enumerate(datos):
         # http_imagen = f'http:localhost:3500/{data['DNI']}/{data['DNI']}.jpg'
-        
+        url_image = f"http://172.206.234.125:3500/{data['DNI']}/{data['DNI']}.jpg"
+        print("URL image => ", url_image)
+
+        img_src = utils.ImageReader(url_image)
+
+        c.drawImage(img_src, 100,600, width=200, height=100)
 
         c.setFont("Helvetica-Bold", 12) #tAMAÑO DE LA FUENTE Y TIPO DE LETRA
         c.drawString(30, height - 30, "UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION")  # Añadir texto al encabezado
