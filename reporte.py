@@ -34,11 +34,13 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
 
     for i, data in enumerate(datos):
         # http_imagen = f'http:localhost:3500/{data['DNI']}/{data['DNI']}.jpg'
-        url_image = f"http://172.206.234.125:3500/{data['DNI']}/{data['DNI']}.jpg"
+        url_image = f"http://172.206.234.125:3500/{data['DNI']}/{data['DNI']}.jpeg"
+        url_image_defecto = f"http://172.206.234.125:3500/defecto/defecto.jpeg"
         print("URL image => ", url_image)
-
-        img_src = utils.ImageReader(url_image)
-
+        try:
+            img_src = utils.ImageReader(url_image)
+        except:
+            img_src = utils.ImageReader(url_image_defecto)
         
 
         c.setFont("Helvetica-Bold", 12) #tAMAÑO DE LA FUENTE Y TIPO DE LETRA
@@ -61,7 +63,7 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
         # Dibujar un rectángulo a la izquierda para la foto
         c.rect(30, height - 270 - ((i % 4) * 150), 120, 120)   
 
-        c.drawImage(img_src, 30 , height - 270 - ((i % 4) * 150), width=120, height=120)
+        c.drawImage(img_src, 30 + 1 , height + 1 - 270 - ((i % 4) * 150), width=119, height=119)
 
         # Dibujar un rectángulo para la huella digital
         c.rect(480, height - 220 - ((i % 4) * 150), 70, 70)
