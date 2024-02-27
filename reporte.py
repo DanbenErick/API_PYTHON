@@ -1,5 +1,6 @@
 # import mysql.connector
 from reportlab.lib.pagesizes import A4
+from reportlab.lib import utils
 from reportlab.pdfgen import canvas
 from datetime import datetime
 import requests
@@ -38,7 +39,7 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
 
         img_src = utils.ImageReader(url_image)
 
-        c.drawImage(img_src, 100,600, width=200, height=100)
+        
 
         c.setFont("Helvetica-Bold", 12) #tAMAÑO DE LA FUENTE Y TIPO DE LETRA
         c.drawString(30, height - 30, "UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION")  # Añadir texto al encabezado
@@ -59,6 +60,8 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
 
         # Dibujar un rectángulo a la izquierda para la foto
         c.rect(30, height - 270 - ((i % 4) * 150), 120, 120)   
+
+        c.drawImage(img_src, 30 , height - 270 - ((i % 4) * 150), width=120, height=120)
 
         # Dibujar un rectángulo para la huella digital
         c.rect(480, height - 220 - ((i % 4) * 150), 70, 70)
