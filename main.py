@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import time
 from typing import Optional
 from reporte import generar_pdf_service
+from reporte_notas import generar_pdf_resultados
 app = FastAPI()
 
 
@@ -21,12 +22,19 @@ async def root():
 
 nombre_temporal = int(time.time() * 1000)
 @app.get('/generar-pdf')
-
 async def generar_pdf(id_proceso: int, inicio: int, fin: int, area: int, fecha: str, sede: str, aula: Optional[str] = None, pdf: Optional[str] = nombre_temporal):
     # if not pdf:
     #     pdf = "output"
     try:
         pdf_path = generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf)
         return FileResponse(pdf_path, media_type='application/pdf', filename=pdf_path)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get('/generar-resultados-pdf')
+async def generar_resultados_pdf(id_proceso):
+    try:
+        pdf_resultados = generar_pdf_resultados(id_proceso)
+        return FileResponse(pdf_resultados, media_type='application/pdf', filename=pdf_path)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
