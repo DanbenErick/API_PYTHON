@@ -67,7 +67,7 @@ def generar_pdf_resultados(id_proceso):
             ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
         ]))
         additional_table.wrapOn(canvas, doc.width, doc.bottomMargin)
-        additional_table.drawOn(canvas, doc.width - 4.4 * inch, doc.bottomMargin + 0.2 * inch)
+        additional_table.drawOn(canvas, doc.width - 4.4 * inch, doc.bottomMargin + 1.50 * inch)
 
         canvas.restoreState()
 
@@ -91,8 +91,9 @@ def generar_pdf_resultados(id_proceso):
     except requests.exceptions.RequestException as e:
         print("Error de conexión:", e)
     tiempo_documento = int(round(time.time() * 1000))
-    doc = SimpleDocTemplate(f"{tiempo_documento}.pdf", pagesize=portrait(A4), leftMargin=0.5*inch, rightMargin=0.5*inch, topMargin=0.3*inch, bottomMargin=0.3*inch)
+    doc = SimpleDocTemplate("output.pdf", pagesize=portrait(A4), leftMargin=0.5*inch, rightMargin=0.5*inch, topMargin=0.3*inch, bottomMargin=2*inch)
     content = []
+
 
     doc.build(content, onFirstPage=add_footer, onLaterPages=add_footer)
 
@@ -220,31 +221,9 @@ def generar_pdf_resultados(id_proceso):
                 
                 
                 image_no_ingreso = Image('imagenes/logo-undac.png', width=0.3*inch, height=0.3*inch)
-                # try:
-                #     print("Jalando la foto " + foto_path_temp)
-                #     # img_src = ImageReader(foto_path_temp).read()
-                #     img_src = ImageReader(foto_path_temp)
-                #     imagen = Image(data=img_src.stream, width=1.1*inch, height=1.1*inch)
-                #     # img = Image(1.1*inch, 1.1*inch, imageData=img_src)
-                    
-                # except:
-                #     print("Fallo jalando foto por defecto")
-                #     # img_src = ImageReader(foto_path).read()
-                #     img_src = ImageReader(foto_path)
-                #     imagen = Image(data=img_src.stream, width=1.1*inch, height=1.1*inch)
-                #     # img = Image(1.1*inch, 1.1*inch, imageData=img_src)
-                    
-                #     print("Hola", img_src)
-                    
-                    
-                    
-                    
-                # if exists(foto_path_temp):
-                #     foto_path = foto_path_temp
-            # foto = utils.ImageReader(foto_path)
+                
             if resultado['ESTADO'] == "INGRESO":
-                # img_src.drawHeight = 1.1*inch
-                # img_src.drawWidth = 1.1*inch   
+                  
                 data.append([
                     imagen,
                     Paragraph(f"<b><font size=15>{num}</font></b>", styleSheet["BodyText"]), 
@@ -288,4 +267,3 @@ def generar_pdf_resultados(id_proceso):
 
     doc.build(content)
     return f"{tiempo_documento}.pdf"
-
