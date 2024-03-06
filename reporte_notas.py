@@ -77,6 +77,7 @@ def generar_pdf_resultados(id_proceso):
 
     # conn.close()
     url = f"{url_host_api}/input-controls/obtener-resultados-ordinario/{id_proceso}"
+    print("URL de datos" + url)
     resultados = []
     try:
         response = requests.get(url)
@@ -101,7 +102,7 @@ def generar_pdf_resultados(id_proceso):
     for resultado in resultados:
         codigo_carrera = resultado['COD_CARRERA']
         modalidad = resultado['ID_TIPO_MODALIDAD']
-
+        
         if codigo_carrera != carrera_actual or modalidad != modalidad_actual:
             if content:
                 content.append(PageBreak())
@@ -187,7 +188,7 @@ def generar_pdf_resultados(id_proceso):
                 
                 # foto_path_temp = f"http://172.206.234.125:3500/{resultado['DNI']}/{resultado['DNI']}.jpeg"
                 foto_path_temp = f"{url_host_api}/{resultado['DNI']}/{resultado['DNI']}.jpeg"
-                
+                print("foto "+foto_path_temp)
                 
                 response = requests.get(foto_path_temp)
                 # Verificar si la descarga fue exitosa
@@ -202,6 +203,7 @@ def generar_pdf_resultados(id_proceso):
                     
                 else:
                     url_temporal = f'{url_host_api}/defecto/defecto.jpeg'
+                    print("foto "+url_temporal)
                     response = requests.get(url_temporal)
                     print('Peticion foto por defecto ' + url_temporal)
                     
