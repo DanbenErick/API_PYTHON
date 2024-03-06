@@ -42,9 +42,9 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
         except:
             img_src = utils.ImageReader(url_image_defecto)
         
-        image_no_ingreso = Image('imagenes/logo-undac.png')
+        # image_no_ingreso = Image('imagenes/logo-undac.png')
         
-        c.drawImage(image_no_ingreso, 30, height - 110, width=100, height=100, preserveAspectRatio=True)
+        c.drawImage('imagenes/logo-undac.png', 30, height - 110, width=100, height=100, preserveAspectRatio=True)
         c.setFont("Helvetica-Bold", 11) #tAMAÑO DE LA FUENTE Y TIPO DE LETRA
         c.drawString(130, height - 30, "UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION")  # Añadir texto al encabezado
         c.drawString(130, height - 50, "DIRECCION DE ADMISION")
@@ -67,7 +67,8 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
         c.drawString(160, height - 210 - ((i % 4) * 150), f"NOMBRES: {data['NOMBRES']}")
         c.setFont("Helvetica-Bold", 8) 
         c.drawString(160, height - 230 - ((i % 4) * 150), f"ESCUELA: {data['ESCUELA_COMPLETA']}")
-        c.drawString(160, height - 250 - ((i % 4) * 150), f"MODALIDAD: {data['NOMBRE_MODALIDAD']}")
+        if(data['NOMBRE_MODALIDAD'] != None):
+            c.drawString(160, height - 250 - ((i % 4) * 150), f"MODALIDAD: {data['NOMBRE_MODALIDAD']}")
 
         # Dibujar un rectángulo a la izquierda para la foto
         c.rect(30, height - 270 - ((i % 4) * 150), 120, 120)   
