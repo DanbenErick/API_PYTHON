@@ -201,7 +201,7 @@ def generar_pdf_resultados(id_proceso):
                     imagen = Image(temp_filename, width=1.0*inch, height=1.0*inch)
                     
                 else:
-                    url_temporal = 'http://localhost:3500/defecto/defecto.jpeg'
+                    url_temporal = f'{url_host_api}/defecto/defecto.jpeg'
                     response = requests.get(url_temporal)
                     print('Peticion foto por defecto ' + url_temporal)
                     
