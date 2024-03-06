@@ -12,6 +12,7 @@ import os
 
 # import mysql.connector
 def generar_pdf_resultados(id_proceso):
+    image_no_ingreso = Image('imagenes/logo-undac.png', width=0.3*inch, height=0.3*inch)
     url_host_api = 'http://172.206.234.125:3500'
     def add_footer(canvas, doc):
         canvas.saveState()
@@ -287,3 +288,4 @@ def generar_pdf_resultados(id_proceso):
 
     doc.build(content)
     return f"{tiempo_documento}.pdf"
+
