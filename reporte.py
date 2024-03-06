@@ -42,9 +42,9 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
         except:
             img_src = utils.ImageReader(url_image_defecto)
         
-
-        logo_path = os.path.abspath("imagenes/logo-undac.png")
-        c.drawImage(ImageReader(logo_path), 30, height - 110, width=100, height=100, preserveAspectRatio=True)
+        image_no_ingreso = Image('imagenes/logo-undac.png')
+        
+        c.drawImage(image_no_ingreso, 30, height - 110, width=100, height=100, preserveAspectRatio=True)
         c.setFont("Helvetica-Bold", 11) #tAMAÑO DE LA FUENTE Y TIPO DE LETRA
         c.drawString(130, height - 30, "UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION")  # Añadir texto al encabezado
         c.drawString(130, height - 50, "DIRECCION DE ADMISION")
