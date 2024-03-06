@@ -12,7 +12,7 @@ import os
 
 # import mysql.connector
 def generar_pdf_resultados(id_proceso):
-    url_host_api = 'http://localhost:3500'
+    url_host_api = 'http://172.206.234.125:3500'
     def add_footer(canvas, doc):
         canvas.saveState()
         page_num = canvas.getPageNumber()
