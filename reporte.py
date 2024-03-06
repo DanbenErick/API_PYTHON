@@ -43,12 +43,21 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
             img_src = utils.ImageReader(url_image_defecto)
         
 
-        c.setFont("Helvetica-Bold", 12) #tAMAÑO DE LA FUENTE Y TIPO DE LETRA
-        c.drawString(30, height - 30, "UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION")  # Añadir texto al encabezado
-        c.drawString(30, height - 50, "DIRECCION DE ADMISION")
-        c.drawString(30, height - 70, "CEPRE III - 2024")
-        c.drawString(30, height - 90, "PADRON DE POSTULANTES")
-        c.drawString(30, height - 110, f"AREA {area}")
+        logo_path = os.path.abspath("imagenes/logo-undac.png")
+        c.drawImage(ImageReader(logo_path), 30, height - 110, width=100, height=100, preserveAspectRatio=True)
+        c.setFont("Helvetica-Bold", 11) #tAMAÑO DE LA FUENTE Y TIPO DE LETRA
+        c.drawString(130, height - 30, "UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION")  # Añadir texto al encabezado
+        c.drawString(130, height - 50, "DIRECCION DE ADMISION")
+        c.drawString(130, height - 70, "EXTRAORDINARIO DE MODALIDADES 2024")
+        c.drawString(130, height - 90, "PADRON DE POSTULANTES")
+        c.drawString(490, height - 40, "PASCO")
+        c.setFont("Helvetica-Bold", 18)
+        c.drawString(470, height - 60, f"AULA: {aula}")
+        c.setFont("Helvetica-Bold", 11)
+        c.drawString(490, height - 80, f"AREA {area}")
+        
+        
+        
         #Tamaño y espaciado de las fuentes
         c.setFont("Helvetica", 10) 
         c.setFont("Helvetica-Bold", 10)
