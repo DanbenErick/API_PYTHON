@@ -83,6 +83,7 @@ def generar_pdf_resultados(id_proceso):
         response = requests.get(url)
         if response.status_code == 200:
             resultados = response.json()
+            print("Datos obtenidos correctamente")
             # print("Datos recibidos:", resultados)
         else:
             print("Error al obtener los datos. Código de estado:", response.status_code)
@@ -102,7 +103,7 @@ def generar_pdf_resultados(id_proceso):
     for resultado in resultados:
         codigo_carrera = resultado['COD_CARRERA']
         modalidad = resultado['ID_TIPO_MODALIDAD']
-        
+        print("Hasta aqui ingrese " + codigo_carrera + " " + modalidad)
         if codigo_carrera != carrera_actual or modalidad != modalidad_actual:
             if content:
                 content.append(PageBreak())
