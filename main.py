@@ -35,6 +35,6 @@ async def generar_pdf(id_proceso: int, inicio: int, fin: int, area: int, fecha: 
 async def generar_resultados_pdf(id_proceso):
     try:
         pdf_resultados = generar_pdf_resultados(id_proceso)
-        return FileResponse(pdf_resultados, media_type='application/pdf', filename=pdf_path)
+        return FileResponse(pdf_resultados, media_type='application/pdf', filename=pdf_resultados)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
