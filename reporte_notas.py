@@ -162,9 +162,11 @@ def generar_pdf_resultados(id_proceso):
 
             content.append(table_4x6)
 
-            header = [["MODALIDAD DE:", Paragraph(f"<b>{modalidad}</b>", styleSheet["BodyText"])],
+            header = [
+                    ["MODALIDAD DE:", Paragraph(f"<b>{resultado['ID_TIPO_MODALIDAD']}</b>", styleSheet["BodyText"])],
                     ["FACULTAD DE:", Paragraph(f"<b>{resultado['FACULTAD']}</b>", styleSheet["BodyText"])],
-                    ["PROGRAMA DE ESTUDIOS:", Paragraph(f"<b>{resultado['CARRERA']}</b>", styleSheet["BodyText"])]]
+                    ["PROGRAMA DE ESTUDIOS:", Paragraph(f"<b>{resultado['CARRERA']}</b>", styleSheet["BodyText"])]
+                ]
             header_table = Table(header)
             header_table.setStyle(TableStyle([
                 ('FONTNAME', (0, 0), (-1, -1), 'Helvetica-Bold'),
@@ -175,7 +177,9 @@ def generar_pdf_resultados(id_proceso):
                 ('ALIGN', (2, 0), (2, -1), 'RIGHT'),
             ]))
             content.append(header_table)
-
+            
+            print("hasta aqui llegue")
+            
             data = [["", "N°", "DNI", "APELLIDOS Y NOMBRES", "PUNTAJE", "ESTADO"]]
             registros_vistos = set()
             num = 1
