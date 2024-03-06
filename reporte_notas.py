@@ -91,7 +91,7 @@ def generar_pdf_resultados(id_proceso):
     except requests.exceptions.RequestException as e:
         print("Error de conexión:", e)
     tiempo_documento = int(round(time.time() * 1000))
-    doc = SimpleDocTemplate("output.pdf", pagesize=portrait(A4), leftMargin=0.5*inch, rightMargin=0.5*inch, topMargin=0.3*inch, bottomMargin=2*inch)
+    doc = SimpleDocTemplate(f"{tiempo_documento}.pdf", pagesize=portrait(A4), leftMargin=0.5*inch, rightMargin=0.5*inch, topMargin=0.3*inch, bottomMargin=2*inch)
     content = []
 
 
