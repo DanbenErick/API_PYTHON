@@ -14,9 +14,8 @@ API_NODE = 'http://143.198.105.92:3500'
 
 def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
 
-    # url = f"http://172.206.234.125:3500/input-controls/obtener-padron-estudiantes?id_proceso={id_proceso}&inicio={inicio}&fin={fin}&area={area}&aula={aula}&fecha={fecha}&sede={sede}"
-    # url = f"http://172.16.10.11:3500/input-controls/obtener-padron-estudiantes/{inicio}/{fin}/{area}"
-    url = f"{API_NODE}/input-controls/obtener-padron-estudiantes/{inicio}/{fin}/{area}"
+    url = f"{API_NODE}/input-controls/obtener-padron-estudiantes?id_proceso={id_proceso}&inicio={inicio}&fin={fin}&area={area}&aula={aula}&fecha={fecha}&sede={sede}"
+    
 
     print("PRINT UTILLLLLLL =====================>",url)
 
