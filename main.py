@@ -3,8 +3,9 @@ from starlette.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import time
 from typing import Optional
-from reporte import generar_pdf_service
+from reporte import generar_pdf_service, generar_pdf_bloque_service
 from reporte_notas import generar_pdf_resultados
+import json
 app = FastAPI()
 
 
@@ -21,6 +22,24 @@ async def root():
     return {"message": "Hola mundo!"}
 
 nombre_temporal = int(time.time() * 1000)
+@app.get('/generar-pdf-bloque')
+async def generar_pdf_bloque(data, pdf: Optional[str] = nombre_temporal):
+    
+    # if not pdf:
+    #     pdf = "output"
+    try:
+        parsed_data = json.loads(data)
+        
+        # print("Holaaaaaaaaaaaaaaaaaaaaaaasa")
+        pdf_path = generar_pdf_bloque_service(parsed_data, pdf)
+        
+        return FileResponse(pdf_path, media_type='application/pdf', filename=pdf_path)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+    
+    
+    
 @app.get('/generar-pdf')
 async def generar_pdf(id_proceso: int, inicio: int, fin: int, area: int, fecha: str, sede: str, aula: Optional[str] = None, pdf: Optional[str] = nombre_temporal):
     # if not pdf:
