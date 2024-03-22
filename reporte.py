@@ -9,6 +9,7 @@ import os
 # from dotenv import load_dotenv
 
 # load_dotenv()
+PROCESO = 'ORDINARIO II - 2024'
 SEDE = 'TARMA'
 API_NODE = 'http://143.198.105.92:3500'
 
@@ -55,7 +56,7 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
         c.setFont("Helvetica-Bold", 11) #tAMAÑO DE LA FUENTE Y TIPO DE LETRA
         c.drawString(130, height - 30, "UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION")  # Añadir texto al encabezado
         c.drawString(130, height - 50, "DIRECCION DE ADMISION")
-        c.drawString(130, height - 70, "EXTRAORDINARIO DE MODALIDADES 2024")
+        c.drawString(130, height - 70, PROCESO)
         c.drawString(130, height - 90, "PADRON DE POSTULANTES")
         c.drawString(490, height - 40, SEDE)
         c.setFont("Helvetica-Bold", 18)
@@ -153,7 +154,7 @@ def generar_pdf_bloque_service(data, pdf):
             c.setFont("Helvetica-Bold", 11) #tAMAÑO DE LA FUENTE Y TIPO DE LETRA
             c.drawString(130, height - 30, "UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRION")  # Añadir texto al encabezado
             c.drawString(130, height - 50, "DIRECCION DE ADMISION")
-            c.drawString(130, height - 70, "EXTRAORDINARIO DE MODALIDADES 2024")
+            c.drawString(130, height - 70, PROCESO)
             c.drawString(130, height - 90, "PADRON DE POSTULANTES")
             c.drawString(490, height - 40, SEDE)
             c.setFont("Helvetica-Bold", 18)
