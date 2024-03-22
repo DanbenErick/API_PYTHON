@@ -9,7 +9,7 @@ import os
 # from dotenv import load_dotenv
 
 # load_dotenv()
-
+SEDE = 'TARMA'
 API_NODE = 'http://143.198.105.92:3500'
 
 def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
@@ -57,7 +57,7 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
         c.drawString(130, height - 50, "DIRECCION DE ADMISION")
         c.drawString(130, height - 70, "EXTRAORDINARIO DE MODALIDADES 2024")
         c.drawString(130, height - 90, "PADRON DE POSTULANTES")
-        c.drawString(490, height - 40, "TARMA")
+        c.drawString(490, height - 40, SEDE)
         c.setFont("Helvetica-Bold", 18)
         c.drawString(470, height - 60, f"AULA: {aula}")
         c.setFont("Helvetica-Bold", 11)
@@ -155,7 +155,7 @@ def generar_pdf_bloque_service(data, pdf):
             c.drawString(130, height - 50, "DIRECCION DE ADMISION")
             c.drawString(130, height - 70, "EXTRAORDINARIO DE MODALIDADES 2024")
             c.drawString(130, height - 90, "PADRON DE POSTULANTES")
-            c.drawString(490, height - 40, "PASCO")
+            c.drawString(490, height - 40, SEDE)
             c.setFont("Helvetica-Bold", 18)
             c.drawString(470, height - 60, f"AULA: {item['aula']}")
             c.setFont("Helvetica-Bold", 11)
