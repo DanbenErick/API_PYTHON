@@ -126,6 +126,7 @@ def generar_pdf_bloque_service(data, pdf):
             # Acceder a los datos de la respuesta
             
             datos = response.json()
+            print("Respuesta ", datos)
             # print(datos)
         else:
             # La petición falló
@@ -137,6 +138,7 @@ def generar_pdf_bloque_service(data, pdf):
         # print("Datao DNI", datos[0]['DNI'])
 
         for i, data in enumerate(datos):
+            print("Estudiante", data)
             # http_imagen = f'http:192.168.1.5:3500/{data['DNI']}/{data['DNI']}.jpg'
             # url_image = f"http://172.16.10.11:3500/{data['DNI']}/{data['DNI']}.jpeg"
             # url_image_defecto = f"http://172.16.10.11:3500//defecto/defecto.jpeg"
