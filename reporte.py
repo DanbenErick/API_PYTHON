@@ -10,7 +10,7 @@ import os
 
 # load_dotenv()
 PROCESO = 'ORDINARIO II - 2024'
-SEDE = 'TARMA'
+SEDE = 'PASCO'
 API_NODE = 'http://143.198.105.92:3500'
 
 def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
