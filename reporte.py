@@ -11,7 +11,8 @@ import os
 # load_dotenv()
 PROCESO = 'ORDINARIO II - 2024'
 SEDE = 'PASCO'
-API_NODE = 'http://143.198.105.92:3500'
+# API_NODE = 'http://143.198.105.92:3500'
+API_NODE = 'http://172.19.144.1:3500'
 
 def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
     print ("recibido ", id_proceso, inicio, fin, area, aula, fecha, sede, pdf)
@@ -125,6 +126,7 @@ def generar_pdf_bloque_service(data, pdf):
             # La petición fue exitosa
             # Acceder a los datos de la respuesta
             
+            print("response ", response)
             datos = response.json()
             print("Respuesta ", datos)
             # print(datos)
