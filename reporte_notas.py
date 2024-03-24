@@ -13,7 +13,7 @@ import os
 # import mysql.connector
 def generar_pdf_resultados(id_proceso):
     image_no_ingreso = Image('imagenes/logo-undac.png', width=0.3*inch, height=0.3*inch)
-    url_host_api = 'http://172.206.234.125:3500'
+    url_host_api = 'http://143.198.105.92:3500'
     def add_footer(canvas, doc):
         canvas.saveState()
         page_num = canvas.getPageNumber()
@@ -21,9 +21,6 @@ def generar_pdf_resultados(id_proceso):
         canvas.setFont("Helvetica", 9)
         canvas.drawString(0.5 * inch, 0.3 * inch, text)
 
-        text2 = "%s" % page_num
-        canvas.setFont("Helvetica-Bold", 9)
-        canvas.drawString(7.35 * inch, 9.9 * inch, text2)
 
         footer_pdf = [
             ["Elaborado por:"],
@@ -67,7 +64,7 @@ def generar_pdf_resultados(id_proceso):
             ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
         ]))
         additional_table.wrapOn(canvas, doc.width, doc.bottomMargin)
-        additional_table.drawOn(canvas, doc.width - 4.4 * inch, doc.bottomMargin + 1.50 * inch)
+        additional_table.drawOn(canvas, doc.width - 4.4 * inch, doc.bottomMargin - 1.50 * inch)
 
         canvas.restoreState()
 
@@ -105,7 +102,7 @@ def generar_pdf_resultados(id_proceso):
     for resultado in resultados:
         codigo_carrera = resultado['COD_CARRERA']
         modalidad = resultado['ID_TIPO_MODALIDAD']
-        print("Hasta aqui ingrese " + codigo_carrera + " " + modalidad)
+        # print("Hasta aqui ingrese " + codigo_carrera + " " )
         if codigo_carrera != carrera_actual or modalidad != modalidad_actual:
             if content:
                 content.append(PageBreak())
@@ -134,12 +131,12 @@ def generar_pdf_resultados(id_proceso):
             '''.encode('utf-8'), styleSheet["BodyText"])
 
             data = [
-                [I, "2", "3", "4"],
-                ["5", P, V, "GAC-DI-01"],
-                ["9", "10", "Versión: ", "Ver. 0.1"],
-                ["13", "14", "Fecha:", "16"],
-                ["17", "18", R, "A15-23-03"],
-                ["21", "22", "Página", ""],
+            [I, "2", "3", "4"],
+            ["5", P, V, "GAC-DI-01"],
+            ["9", "10", "Versión: ", "Ver. 0.1"],
+            ["13", "14", "Fecha:", "16"],
+            ["17", "18", R, "A15-23-03"],
+            ["21", "22", "SEDE CENTRAL", "PASCO"],
             ]
 
             data[0][1:4] = ["UNIVERSIDAD NACIONAL DANIEL ALCIDES CARRIÓN"]
@@ -249,7 +246,7 @@ def generar_pdf_resultados(id_proceso):
             num += 1
             
         if data:
-            table = Table(data, colWidths=[1.1*inch, 0.3*inch, 0.9*inch, 3.5*inch, 0.75*inch, 0.9*inch])
+            table = Table(data, colWidths=[1.1*inch, 0.3*inch, 0.9*inch, 3.3*inch, 0.65*inch, 1.1*inch])
             table.setStyle(TableStyle([
                 ('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
                 ('BOX', (0, 0), (-1, -1), 0.25, colors.black),
@@ -260,10 +257,13 @@ def generar_pdf_resultados(id_proceso):
                 ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
                 ('LEFTPADDING', (0, 0), (-1, -1), 5),
                 ('RIGHTPADDING', (0, 0), (-1, -1), 5),
-                ('TOPPADDING', (0, 0), (-1, -1), 5),
-                ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
+                ('TOPPADDING', (0, 0), (-1, -1), 2),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 2),
             ]))
             content.append(table)
 
     doc.build(content)
     return f"{tiempo_documento}.pdf"
+
+
+generar_pdf_resultados(27)
