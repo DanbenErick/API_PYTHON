@@ -396,5 +396,3 @@ def generar_constancia_por_estudiante(proceso, dni):
   indice_contador_contancias = indice_contador_contancias + 1
   c.save()
   return f'{tiempo_milisegundos}.pdf'
-
-generar_constancia_por_estudiante(26, 71223932)
