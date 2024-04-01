@@ -9,11 +9,13 @@ from datetime import date
 import requests
 from reportlab.lib.utils import ImageReader
 import os
-
+from datetime import datetime
+COMISION_DOCENTE = 'Mg. Rafael MATENCIO GERONIMO'
 # import mysql.connector
 def generar_pdf_resultados(id_proceso):
     image_no_ingreso = Image('imagenes/logo-undac.png', width=0.3*inch, height=0.3*inch)
-    url_host_api = 'http://143.198.105.92:3500'
+    # url_host_api = 'http://143.198.105.92:3500'
+    url_host_api = 'http://172.19.144.1:3500'
     def add_footer(canvas, doc):
         canvas.saveState()
         page_num = canvas.getPageNumber()
@@ -24,8 +26,8 @@ def generar_pdf_resultados(id_proceso):
 
         footer_pdf = [
             ["Elaborado por:"],
-            ["Comisión de Calificación y Publicación de Resultados\ndel Primer Examen CEPRE III - 2024"],
-            ["Mg. Antonio E. YANCAN CAMAHUAL"],
+            [f"Comisión de Calificación y Publicación de Resultados\ndel ORDINARIO II - 2024"],
+            [COMISION_DOCENTE],
             ["\nFirma:"]
         ]
         footer_table = Table(footer_pdf)
@@ -130,11 +132,17 @@ def generar_pdf_resultados(id_proceso):
                 <para align=center spaceb=1><font size=8><b>Registro de Archivo:</b></font></para>
             '''.encode('utf-8'), styleSheet["BodyText"])
 
+            # Obtener la fecha actual
+            fecha_actual = datetime.now()
+
+            # Formatear la fecha en el formato dd/mm/YYYY
+            fecha_formateada = fecha_actual.strftime("%d/%m/%Y")
+            
             data = [
             [I, "2", "3", "4"],
             ["5", P, V, "GAC-DI-01"],
             ["9", "10", "Versión: ", "Ver. 0.1"],
-            ["13", "14", "Fecha:", "16"],
+            ["13", "14", "Fecha:", fecha_formateada],
             ["17", "18", R, "A15-23-03"],
             ["21", "22", "SEDE CENTRAL", "PASCO"],
             ]
