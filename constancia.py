@@ -361,8 +361,8 @@ def generar_constancia_por_estudiante(proceso, dni):
   ])
   print("Data de tabla", data)
   for i in range(len(data)):
-      print(f'Cantidad de caracteres: {data[i][1]} - {len( data[i][1])}')
       if data[i][1] is not None:
+      print(f'Cantidad de caracteres: {data[i][1]} - {len( data[i][1])}')
           if len(data[i][1]) > 32:
               # Dividir la cadena en dos partes y agregar un salto de línea
               data[i][1] = '\n'.join([data[i][1][j:j+32] for j in range(0, len(data[i][1]), 32)])
