@@ -52,17 +52,17 @@ async def generar_pdf(id_proceso: int, inicio: int, fin: int, area: int, fecha: 
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get('/generar-resultados-pdf')
-async def generar_resultados_pdf(id_proceso):
+async def generar_resultados_pdf(id_proceso, tipo_documento="ORIGINAL"):
     try:
-        pdf_resultados = generar_pdf_resultados(id_proceso)
+        pdf_resultados = generar_pdf_resultados(id_proceso, tipo_documento)
         return FileResponse(pdf_resultados, media_type='application/pdf', filename=pdf_resultados)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get('/generar-constancia-bloque')
-async def generar_constancia_bloque(id_proceso):
+async def generar_constancia_bloque(id_proceso, tipo_documento="ORIGINAL"):
     try:
-        pdf_constancia = generar_constancias_por_proceso(id_proceso)
+        pdf_constancia = generar_constancias_por_proceso(id_proceso, tipo_documento)
         return FileResponse(pdf_constancia, media_type='application/pdf', filename=pdf_constancia)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

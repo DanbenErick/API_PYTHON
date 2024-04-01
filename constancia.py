@@ -19,11 +19,12 @@ import time
 
 # font = ttFont.open("Aptos.ttf")
 # font.registerFont(force=True)
-URL_API = '143.198.105.92'
+URL_API = '172.16.10.51'
+# URL_API = '143.198.105.92'
 
-def generar_constancias_por_proceso(proceso):
+def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
 
-  url = f'http://{URL_API}:3500/input-controls/obtener-constancias-ingreso'
+  url = f'http://{URL_API}:3500/input-controls/obtener-constancias-ingreso?proceso={proceso}'
   print("url", url)
   indice_contador_contancias = 0
 
@@ -173,10 +174,11 @@ def generar_constancias_por_proceso(proceso):
 
       # Aplicar salto de línea en la segunda columna después de 22 caracteres
     for i in range(len(data)):
-        print(f'Cantidad de caracteres: {data[i][1]} - {len( data[i][1])}')
-        if len(data[i][1]) > 32:
-            # Dividir la cadena en dos partes y agregar un salto de línea
-            data[i][1] = '\n'.join([data[i][1][j:j+32] for j in range(0, len(data[i][1]), 32)])
+      if data[i][1] is not None:
+          print(f'Cantidad de caracteres: {data[i][1]} - {len( data[i][1])}')
+          if len(data[i][1]) > 32:
+              # Dividir la cadena en dos partes y agregar un salto de línea
+              data[i][1] = '\n'.join([data[i][1][j:j+32] for j in range(0, len(data[i][1]), 32)])
 
     tabla = Table(data, colWidths=[ancho_max_nombre, ancho_max_edad])
     tabla.setStyle(estilo_tabla)
@@ -200,7 +202,7 @@ def generar_constancias_por_proceso(proceso):
     y_pos -= inch * separador_texto
     
     c.setFont("aptos-bold", 11)
-    c.drawString(340, 120, f'CARGO - DIRECCION GENERAL DE ADMISION')
+    c.drawString(340, 120, f'{tipo_documento} - DIRECCION GENERAL DE ADMISION')
     y_pos -= inch * separador_texto
     
     print("Agregando pagina")
@@ -236,7 +238,7 @@ def generar_constancias_por_proceso(proceso):
   c.save()
   return f'{tiempo_milisegundos_1}.pdf'
 
-def generar_constancia_por_estudiante(proceso, dni):
+def generar_constancia_por_estudiante(proceso, tipo_documento='ORIGINAL'):
   print("Valores recibidos", proceso, dni)
   url = f'http://{URL_API}:3500/general/estudiantes/obtener-constancia-estudiante?dni={dni}&proceso={proceso}'
   print("url", url)
@@ -389,7 +391,7 @@ def generar_constancia_por_estudiante(proceso, dni):
   y_pos -= inch * separador_texto
   
   c.setFont("aptos-bold", 11)
-  c.drawString(340, 120, f'CARGO - DIRECCION GENERAL DE ADMISION')
+  c.drawString(340, 120, f'{tipo_documento} - DIRECCION GENERAL DE ADMISION')
   y_pos -= inch * separador_texto
   
   print("Agregando pagina")
