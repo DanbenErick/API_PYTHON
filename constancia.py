@@ -19,7 +19,7 @@ import time
 
 # font = ttFont.open("Aptos.ttf")
 # font.registerFont(force=True)
-URL_API = '192.168.1.4'
+URL_API = '143.198.105.92'
 
 def generar_constancias_por_proceso(proceso):
 
@@ -396,3 +396,4 @@ def generar_constancia_por_estudiante(proceso, dni):
   c.save()
   return f'{tiempo_milisegundos}.pdf'
 
+generar_constancia_por_estudiante(26, 71223932)
