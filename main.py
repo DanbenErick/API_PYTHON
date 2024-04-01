@@ -52,15 +52,15 @@ async def generar_pdf(id_proceso: int, inicio: int, fin: int, area: int, fecha: 
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get('/generar-resultados-pdf')
-async def generar_resultados_pdf(id_proceso, tipo_documento="ORIGINAL"):
+async def generar_resultados_pdf(id_proceso):
     try:
-        pdf_resultados = generar_pdf_resultados(id_proceso, tipo_documento)
+        pdf_resultados = generar_pdf_resultados(id_proceso)
         return FileResponse(pdf_resultados, media_type='application/pdf', filename=pdf_resultados)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get('/generar-constancia-bloque')
-async def generar_constancia_bloque(id_proceso, tipo_documento="ORIGINAL"):
+async def generar_constancia_bloque(id_proceso, tipo_documento):
     try:
         pdf_constancia = generar_constancias_por_proceso(id_proceso, tipo_documento)
         return FileResponse(pdf_constancia, media_type='application/pdf', filename=pdf_constancia)
@@ -68,9 +68,9 @@ async def generar_constancia_bloque(id_proceso, tipo_documento="ORIGINAL"):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get('/generar-constancia-estudiante')
-async def generar_constancia_estudiante(id_proceso, dni):
+async def generar_constancia_estudiante(id_proceso, dni, tipo_documento):
     try:
-        pdf_constancia = generar_constancia_por_estudiante(id_proceso, dni)
+        pdf_constancia = generar_constancia_por_estudiante(id_proceso, dni, tipo_documento)
         return FileResponse(pdf_constancia, media_type='application/pdf', filename=pdf_constancia)
     except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))

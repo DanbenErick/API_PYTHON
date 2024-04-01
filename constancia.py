@@ -238,7 +238,7 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
   c.save()
   return f'{tiempo_milisegundos_1}.pdf'
 
-def generar_constancia_por_estudiante(proceso, tipo_documento='ORIGINAL'):
+def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
   print("Valores recibidos", proceso, dni)
   url = f'http://{URL_API}:3500/general/estudiantes/obtener-constancia-estudiante?dni={dni}&proceso={proceso}'
   print("url", url)
@@ -398,3 +398,5 @@ def generar_constancia_por_estudiante(proceso, tipo_documento='ORIGINAL'):
   indice_contador_contancias = indice_contador_contancias + 1
   c.save()
   return f'{tiempo_milisegundos}.pdf'
+
+# generar_constancias_por_proceso(26, "PRUEBA")
