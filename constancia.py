@@ -19,8 +19,8 @@ import time
 
 # font = ttFont.open("Aptos.ttf")
 # font.registerFont(force=True)
-URL_API = '172.16.10.51'
-# URL_API = '143.198.105.92'
+# URL_API = '172.16.10.51'
+URL_API = '143.198.105.92'
 
 def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
 
