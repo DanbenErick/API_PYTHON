@@ -21,6 +21,7 @@ import time
 # font.registerFont(force=True)
 # URL_API = '172.16.10.51'
 URL_API = '143.198.105.92'
+# URL_API = '172.16.10.51'
 
 def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
 
@@ -128,24 +129,25 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
     estilo_negrita.fontName = 'Helvetica-Bold'
 
     # Datos para la tabla
+    
     data = [
-        ['', ''],
-        ['Apellido Paterno:', data_e['AP_PATERNO']],
-        ['Apellido Materno:', data_e['AP_MATERNO']],
-        ['Nombres:', data_e['NOMBRES']],
-        ['DNI:', data_e['DNI']],
-        ['Codigo:', data_e['CODIGO_MATRICULA']],
-        ['Sede: ', data_e['SEDE_FACULTAD']],
-        ['Direccion: ', data_e['DIRECCION_CARRERA']],
-        ['Facultad: ', data_e['FACULTAD']],
-        ['Proceso: ', data_e['NOMBRE_PROCESO']],
-        ['Promedio:', data_e['PROMEDIO']],
-        ['Modalidad: ', data_e['MODALIDAD']],
-        ['Carrera:', data_e['CARRERA']],
-        ['Semestre de inicio:', '2024 - A'],
-        ['Merito:', f"{data_e['ORDEN_MERITO_1']}"],
-        ['Constancia Nro:', f'{indice_contador_contancias} - 2024'],
-    ]
+      ['', ''],
+      ['Apellido Paterno:', datos_e.get('AP_PATERNO', '')],
+      ['Apellido Materno:', datos_e.get('AP_MATERNO', '')],
+      ['Nombres:', datos_e.get('NOMBRES', '')],
+      ['DNI:', datos_e.get('DNI', '')],
+      ['Codigo:', datos_e.get('CODIGO_MATRICULA', '')],
+      ['Sede: ', datos_e.get('SEDE_FACULTAD', '')],
+      ['Direccion: ', datos_e.get('DIRECCION_CARRERA', '')],
+      ['Facultad: ', datos_e.get('FACULTAD', '')],
+      ['Proceso: ', datos_e.get('NOMBRE_PROCESO', '')],
+      ['Promedio:', datos_e.get('PROMEDIO', '')],
+      ['Modalidad: ', datos_e.get('MODALIDAD', '')],
+      ['Carrera:', datos_e.get('CARRERA', '')],
+      ['Semestre de inicio:', '2024 - A'],
+      ['Merito:', f"{datos_e.get('ORDEN_MERITO_1', '')}"],
+      ['Constancia Nro:', f"{datos_e.get('ID', '')} - 2024"],
+  ]
     print("valor de tabla", data)
 
     ancho_max_nombre = 115
