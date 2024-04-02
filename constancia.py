@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import inch
