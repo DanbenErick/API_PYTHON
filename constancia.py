@@ -215,7 +215,7 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
 
     print(f"{ceros}{numero}")
     
-    c.drawString(40, 120, f'N° {ceros}{data_e.get('NUM_CONSTANCIA', '')}')
+    c.drawString(40, 120, f"N° {ceros}{data_e.get('NUM_CONSTANCIA', '')}")
     y_pos -= inch * separador_texto
     
     c.setFont("aptos-bold", 11)
