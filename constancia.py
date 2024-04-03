@@ -147,7 +147,7 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
       ['Carrera:', data_e.get('CARRERA', '')],
       ['Semestre de inicio:', '2024 - A'],
       ['Merito:', f"{data_e.get('ORDEN_MERITO_1', '')}"],
-      ['Constancia Nro:', f"{data_e.get('ID', '')} - 2024"],
+      ['Constancia Nro:', f"{data_e.get('NUM_CONSTANCIA', '')} - 2024"],
   ]
     print("valor de tabla", data)
 
@@ -201,7 +201,21 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
     y_pos -= inch * separador_texto
     
     c.setFont("aptos-bold", 11)
-    c.drawString(40, 120, f'N° 000{indice_contador_contancias}')
+    
+    numero = data_e.get('NUM_CONSTANCIA', '')
+    numero_str = str(numero)
+    cantidad = len(numero_str)
+    print(cantidad)
+
+    resto = 6 - cantidad
+
+    ceros = ""
+    for i in range(resto):
+        ceros = ceros + "0"
+
+    print(f"{ceros}{numero}")
+    
+    c.drawString(40, 120, f'N° {ceros}{data_e.get('NUM_CONSTANCIA', '')}')
     y_pos -= inch * separador_texto
     
     c.setFont("aptos-bold", 11)
@@ -346,7 +360,7 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
       ['Carrera:', datos.get('CARRERA', '')],
       ['Semestre de inicio:', '2024 - A'],
       ['Merito:', f"{datos.get('ORDEN_MERITO_1', '')}"],
-      ['Constancia Nro:', f"{datos.get('ID', '')} - 2024"],
+      ['Constancia Nro:', f"{datos.get('NUM_CONSTANCIA', '')} - 2024"],
   ]
 
 
@@ -390,7 +404,21 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
   y_pos -= inch * separador_texto
   
   c.setFont("aptos-bold", 11)
-  c.drawString(40, 120, f"N° 000{datos['ID']}")
+  
+  numero = data_e.get('NUM_CONSTANCIA', '')
+  numero_str = str(numero)
+  cantidad = len(numero_str)
+  print(cantidad)
+
+  resto = 6 - cantidad
+
+  ceros = ""
+  for i in range(resto):
+      ceros = ceros + "0"
+
+  print(f"{ceros}{numero}")
+     
+  c.drawString(40, 120, f"N° {ceros}{datos.get('NUM_CONSTANCIA', '')}")
   y_pos -= inch * separador_texto
   
   c.setFont("aptos-bold", 11)
