@@ -66,7 +66,7 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
   for i, data_e in enumerate(datos):
     tiempo_milisegundos = int(time.time() * 1000)
     # texto_qr = f"{data_e['DNI']}"
-    texto_qr = f"https://front-undac.vercel.app/constacias-ingreso?uuid=1547a6af-8ce9-4569-8d05-7ef8040e1fdd&token=018e7d13-e7fa-7b6b-b663-4bc50e11b1e0&apellido_paterno={data_e['AP_PATERNO']}&apellido_materno={data_e['AP_MATERNO']}&nombres={data_e['NOMBRES']}&dni={data_e['DNI']}&codigo_matricula={data_e['CODIGO_MATRICULA']}&sede={data_e['SEDE_FACULTAD']}&direccion={data_e['DIRECCION_CARRERA']}&facultad={data_e['DIRECCION_CARRERA']}&proceso={data_e['NOMBRE_PROCESO']}&promedio={data_e['PROMEDIO']}"
+    texto_qr = f"https://front-undac.vercel.app/constacias-ingreso?uuid=1547a6af-8ce9-4569-8d05-7ef8040e1fdd&token=018e7d13-e7fa-7b6b-b663-4bc50e11b1e0&apellido_paterno={data_e['AP_PATERNO']}&apellido_materno={data_e['AP_MATERNO']}&nombres={data_e['NOMBRES']}&dni={data_e['DNI']}&codigo_matricula={data_e['CODIGO_MATRICULA']}&sede={data_e['SEDE_FACULTAD']}&direccion={data_e['DIRECCION_CARRERA']}&facultad={data_e['FACULTAD']}&proceso={data_e['NOMBRE_PROCESO']}&promedio={data_e['PROMEDIO']}"
 
     qr = qrcode.QRCode()
     # Establece el nivel de corrección de errores
