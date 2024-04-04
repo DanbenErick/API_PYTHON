@@ -151,7 +151,7 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
   ]
     print("valor de tabla", data)
 
-    ancho_max_nombre = 115
+    ancho_max_nombre = 125
     ancho_max_edad = 210
 
     # Crear la tabla
@@ -166,6 +166,7 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
       #   ('FONT', (0, 0), (-1, 0), 'aptos'),
         ('FONTSIZE', (0, 0), (-1, -1), 13),
         ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        # ('RIGHTPADDING', (0, 0), (-1, 0), 12),
         ('FONT', (0,0), (1,50), 'Helvetica'),
         ('FONT', (0,0), (0,50), 'Helvetica-Bold'),
       #   ('TEXTCOLOR', (0, 0), (0, -1), colors.red),
@@ -179,9 +180,9 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
     for i in range(len(data)):
       if data[i][1] is not None:
           print(f'Cantidad de caracteres: {data[i][1]} - {len( data[i][1])}')
-          if len(data[i][1]) > 32:
+          if len(data[i][1]) > 28:
               # Dividir la cadena en dos partes y agregar un salto de línea
-              data[i][1] = '\n'.join([data[i][1][j:j+32] for j in range(0, len(data[i][1]), 32)])
+              data[i][1] = '\n'.join([data[i][1][j:j+28] for j in range(0, len(data[i][1]), 28)])
 
     tabla = Table(data, colWidths=[ancho_max_nombre, ancho_max_edad])
     tabla.setStyle(estilo_tabla)
@@ -219,7 +220,7 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
     y_pos -= inch * separador_texto
     
     c.setFont("Helvetica-Bold", 11)
-    c.drawString(340, 120, f'{tipo_documento} - DIRECCION GENERAL DE ADMISION')
+    c.drawString(310, 120, f'{tipo_documento} - DIRECCION GENERAL DE ADMISION')
     y_pos -= inch * separador_texto
     
     print("Agregando pagina")
@@ -365,7 +366,7 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
 
 
   print(data)
-  ancho_max_nombre = 115
+  ancho_max_nombre = 125
   ancho_max_edad = 210
 
   # Crear la tabla
@@ -374,6 +375,8 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
       ('VALIGN', (0, 0), (-1, -1), 'TOP'),
       ('FONTSIZE', (0, 0), (-1, -1), 13),
       ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+      # ('RIGHTPADDING', (0, 0), (-1, -1), 100),
+      # ('LEFTPADDING', (0, 0), (-1, -1), 100),
       ('FONT', (0,0), (1,50), 'Helvetica'),
       ('FONT', (0,0), (0,50), 'Helvetica-Bold'),
     
@@ -382,9 +385,9 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
   for i in range(len(data)):
       if data[i][1] is not None:
           print(f'Cantidad de caracteres: {data[i][1]} - {len( data[i][1])}')
-          if len(data[i][1]) > 32:
+          if len(data[i][1]) > 28:
               # Dividir la cadena en dos partes y agregar un salto de línea
-              data[i][1] = '\n'.join([data[i][1][j:j+32] for j in range(0, len(data[i][1]), 32)])
+              data[i][1] = '\n'.join([data[i][1][j:j+28] for j in range(0, len(data[i][1]), 28)])
 
   tabla = Table(data, colWidths=[ancho_max_nombre, ancho_max_edad])
   tabla.setStyle(estilo_tabla)
@@ -422,7 +425,7 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
   y_pos -= inch * separador_texto
   
   c.setFont("Helvetica-Bold", 11)
-  c.drawString(340, 120, f'{tipo_documento} - DIRECCION GENERAL DE ADMISION')
+  c.drawString(310, 120, f'{tipo_documento} - DIRECCION GENERAL DE ADMISION')
   y_pos -= inch * separador_texto
   
   print("Agregando pagina")
