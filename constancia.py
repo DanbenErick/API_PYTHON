@@ -166,8 +166,8 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
       #   ('FONT', (0, 0), (-1, 0), 'aptos'),
         ('FONTSIZE', (0, 0), (-1, -1), 13),
         ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-        ('FONT', (0,0), (1,50), 'aptos'),
-        ('FONT', (0,0), (0,50), 'aptos-bold'),
+        ('FONT', (0,0), (1,50), 'Helvetica'),
+        ('FONT', (0,0), (0,50), 'Helvetica-Bold'),
       #   ('TEXTCOLOR', (0, 0), (0, -1), colors.red),
         # ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
     ])
@@ -193,14 +193,14 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
     tabla.wrapOn(c, width, height)
     tabla.drawOn(c, coordenada_x, coordenada_y - altura_total)
     
-    c.setFont("aptos", 14)
+    c.setFont("Helvetica", 14)
     c.drawString(70, 250, f'Se le expide la presente constancia para que proceda su matricula respectiva')
     y_pos -= inch * separador_texto
-    c.setFont("aptos-bold", 14)
+    c.setFont("Helvetica-Bold", 14)
     c.drawString(200, 230, f'Cerro de Pasco, {mes_nombre} del {anio_actual}')
     y_pos -= inch * separador_texto
     
-    c.setFont("aptos-bold", 11)
+    c.setFont("Helvetica-Bold", 11)
     
     numero = data_e.get('NUM_CONSTANCIA', '')
     numero_str = str(numero)
@@ -218,7 +218,7 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
     c.drawString(40, 120, f"N° {ceros}{data_e.get('NUM_CONSTANCIA', '')}")
     y_pos -= inch * separador_texto
     
-    c.setFont("aptos-bold", 11)
+    c.setFont("Helvetica-Bold", 11)
     c.drawString(340, 120, f'{tipo_documento} - DIRECCION GENERAL DE ADMISION')
     y_pos -= inch * separador_texto
     
@@ -374,8 +374,8 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
       ('VALIGN', (0, 0), (-1, -1), 'TOP'),
       ('FONTSIZE', (0, 0), (-1, -1), 13),
       ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-      ('FONT', (0,0), (1,50), 'aptos'),
-      ('FONT', (0,0), (0,50), 'aptos-bold'),
+      ('FONT', (0,0), (1,50), 'Helvetica'),
+      ('FONT', (0,0), (0,50), 'Helvetica-Bold'),
     
   ])
   print("Data de tabla", data)
@@ -396,14 +396,14 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
   tabla.wrapOn(c, width, height)
   tabla.drawOn(c, coordenada_x, coordenada_y - altura_total)
   
-  c.setFont("aptos", 14)
+  c.setFont("Helvetica", 14)
   c.drawString(70, 250, f'Se le expide la presente constancia para que proceda su matricula respectiva')
   y_pos -= inch * separador_texto
-  c.setFont("aptos-bold", 14)
+  c.setFont("Helvetica-Bold", 14)
   c.drawString(200, 230, f'Cerro de Pasco, {mes_nombre} del {anio_actual}')
   y_pos -= inch * separador_texto
   
-  c.setFont("aptos-bold", 11)
+  c.setFont("Helvetica-Bold", 11)
   
   numero = datos.get('NUM_CONSTANCIA', '')
   numero_str = str(numero)
@@ -421,7 +421,7 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
   c.drawString(40, 120, f"N° {ceros}{datos.get('NUM_CONSTANCIA', '')}")
   y_pos -= inch * separador_texto
   
-  c.setFont("aptos-bold", 11)
+  c.setFont("Helvetica-Bold", 11)
   c.drawString(340, 120, f'{tipo_documento} - DIRECCION GENERAL DE ADMISION')
   y_pos -= inch * separador_texto
   
