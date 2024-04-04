@@ -435,4 +435,4 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
 
 # generar_constancias_por_proceso(26, "PRUEBA")
 
-generar_constancia_por_estudiante(27, 72838382)
+# generar_constancia_por_estudiante(27, 72838382)
