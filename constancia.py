@@ -22,7 +22,7 @@ import time
 # font.registerFont(force=True)
 # URL_API = '172.16.10.51'
 URL_API = '143.198.105.92'
-# URL_API = '172.16.10.51'
+# URL_API = '172.19.144.1'
 
 def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
 
@@ -133,21 +133,21 @@ def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
     
     data = [
       ['', ''],
-      ['Apellido Paterno:', data_e.get('AP_PATERNO', '')],
-      ['Apellido Materno:', data_e.get('AP_MATERNO', '')],
-      ['Nombres:', data_e.get('NOMBRES', '')],
-      ['DNI:', data_e.get('DNI', '')],
-      ['Codigo:', data_e.get('CODIGO_MATRICULA', '')],
-      ['Sede: ', data_e.get('SEDE_FACULTAD', '')],
-      ['Direccion: ', data_e.get('DIRECCION_CARRERA', '')],
-      ['Facultad: ', data_e.get('FACULTAD', '')],
-      ['Proceso: ', data_e.get('NOMBRE_PROCESO', '')],
-      ['Promedio:', data_e.get('PROMEDIO', '')],
+      ['Apellido Paterno:', data_e.get('AP_PATERNO', '').upper()],
+      ['Apellido Materno:', data_e.get('AP_MATERNO', '').upper()],
+      ['Nombres:', data_e.get('NOMBRES', '').upper()],
+      ['DNI:', data_e.get('DNI', '').upper()],
+      ['Codigo:', data_e.get('CODIGO_MATRICULA', '').upper()],
+      ['Sede: ', data_e.get('SEDE_FACULTAD', '').upper()],
+      ['Direccion: ', data_e.get('DIRECCION_CARRERA', '').upper()],
+      ['Facultad: ', data_e.get('FACULTAD', '').upper()],
+      ['Proceso: ', data_e.get('NOMBRE_PROCESO', '').upper()],
+      ['Promedio:', data_e.get('PROMEDIO', '').upper()],
     #  ['Modalidad: ', data_e.get('MODALIDAD', '')],
-      ['Carrera:', data_e.get('CARRERA', '')],
-      ['Semestre de inicio:', '2024 - A'],
-      ['Merito:', f"{data_e.get('ORDEN_MERITO_1', '')}"],
-      ['Constancia Nro:', f"{data_e.get('NUM_CONSTANCIA', '')} - 2024"],
+      ['Carrera:', data_e.get('CARRERA', '').upper()],
+      ['Semestre de inicio:', '2024 - A'.upper()],
+      ['Merito:', f"{data_e.get('ORDEN_MERITO_1', '')}".upper()],
+      ['Constancia Nro:', f"{data_e.get('NUM_CONSTANCIA', '')} - 2024".upper()],
   ]
     print("valor de tabla", data)
 
@@ -346,21 +346,21 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
   print("Datos => ", datos)
   data = [
       ['', ''],
-      ['Apellido Paterno:', datos.get('AP_PATERNO', '')],
-      ['Apellido Materno:', datos.get('AP_MATERNO', '')],
-      ['Nombres:', datos.get('NOMBRES', '')],
-      ['DNI:', datos.get('DNI', '')],
-      ['Codigo:', datos.get('CODIGO_MATRICULA', '')],
-      ['Sede: ', datos.get('SEDE_FACULTAD', '')],
-      ['Direccion: ', datos.get('DIRECCION_CARRERA', '')],
-      ['Facultad: ', datos.get('FACULTAD', '')],
-      ['Proceso: ', datos.get('NOMBRE_PROCESO', '')],
-      ['Promedio:', datos.get('PROMEDIO', '')],
+      ['Apellido Paterno:', datos.get('AP_PATERNO', '').upper()],
+      ['Apellido Materno:', datos.get('AP_MATERNO', '').upper()],
+      ['Nombres:', datos.get('NOMBRES', '').upper()],
+      ['DNI:', datos.get('DNI', '').upper()],
+      ['Codigo:', datos.get('CODIGO_MATRICULA', '').upper()],
+      ['Sede: ', datos.get('SEDE_FACULTAD', '').upper()],
+      ['Direccion: ', datos.get('DIRECCION_CARRERA', '').upper()],
+      ['Facultad: ', datos.get('FACULTAD', '').upper()],
+      ['Proceso: ', datos.get('NOMBRE_PROCESO', '').upper()],
+      ['Promedio:', datos.get('PROMEDIO', '').upper()],
     #  ['Modalidad: ', datos.get('MODALIDAD', '')],
-      ['Carrera:', datos.get('CARRERA', '')],
-      ['Semestre de inicio:', '2024 - A'],
-      ['Merito:', f"{datos.get('ORDEN_MERITO_1', '')}"],
-      ['Constancia Nro:', f"{datos.get('NUM_CONSTANCIA', '')} - 2024"],
+      ['Carrera:', datos.get('CARRERA', '').upper()],
+      ['Semestre de inicio:', '2024 - A'.upper()],
+      ['Merito:', f"{datos.get('ORDEN_MERITO_1', '')}".upper()],
+      ['Constancia Nro:', f"{datos.get('NUM_CONSTANCIA', '')} - 2024".upper()],
   ]
 
 
@@ -405,7 +405,7 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
   
   c.setFont("aptos-bold", 11)
   
-  numero = data_e.get('NUM_CONSTANCIA', '')
+  numero = datos.get('NUM_CONSTANCIA', '')
   numero_str = str(numero)
   cantidad = len(numero_str)
   print(cantidad)
@@ -431,3 +431,5 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
   return f'{tiempo_milisegundos}.pdf'
 
 # generar_constancias_por_proceso(26, "PRUEBA")
+
+generar_constancia_por_estudiante(27, 72838382)
