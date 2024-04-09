@@ -10,7 +10,7 @@ import time
 
 
 def generar_reporte_por_cordinador(proceso, dni):
-    URL_API = '172.16.10.197'
+    URL_API = '143.198.105.92'
     response = requests.get(f'http://{URL_API}:3500/input-controls/obtener-inscritos-por-cordinador?dni={dni}&proceso={proceso}')
     tiempo_documento = int(round(time.time() * 1000))
     if response.status_code == 200:
