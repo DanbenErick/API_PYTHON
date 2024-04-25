@@ -21,7 +21,7 @@ import time
 # font = ttFont.open("Aptos.ttf")
 # font.registerFont(force=True)
 # URL_API = '172.16.10.51'
-URL_API = '143.198.105.92'
+URL_API = '192.168.1.3'
 # URL_API = '172.19.144.1'
 
 def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):
@@ -357,8 +357,8 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
       ['Facultad: ', datos.get('FACULTAD', '').upper()],
       ['Proceso: ', datos.get('NOMBRE_PROCESO', '').upper()],
       ['Promedio:', datos.get('PROMEDIO', '').upper()],
-    #  ['Modalidad: ', datos.get('MODALIDAD', '')],
-      ['Carrera:', datos.get('CARRERA', '').upper()],
+      ['Modalidad: ', datos.get('MODALIDAD', '')],
+      ['Programa de Estudios: :', datos.get('CARRERA', '').upper()],
       ['Semestre de inicio:', '2024 - A'.upper()],
       ['Merito:', f"{datos.get('ORDEN_MERITO_1', '')}".upper()],
       ['Constancia Nro:', f"{datos.get('NUM_CONSTANCIA', '')} - 2024".upper()],
@@ -436,3 +436,5 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
 # generar_constancias_por_proceso(26, "PRUEBA")
 
 # generar_constancia_por_estudiante(27, 72838382)
+
+# generar_constancias_por_proceso(27)

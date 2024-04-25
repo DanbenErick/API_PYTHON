@@ -3,8 +3,8 @@ from starlette.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import time
 from typing import Optional
-from reporte import generar_pdf_service, generar_pdf_bloque_service
-from reporte_notas import generar_pdf_resultados
+from padron import generar_pdf_service, generar_pdf_bloque_service
+from resultados import generar_pdf_resultados
 from constancia import generar_constancias_por_proceso, generar_constancia_por_estudiante
 from reporte_cordinador import generar_reporte_por_cordinador
 import json

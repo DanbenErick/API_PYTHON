@@ -3,7 +3,7 @@ import openpyxl
 
 # Conexión a la base de datos
 conexion = mysql.connector.connect(
-    host="172.16.10.44",
+    host="192.168.1.3",
     user="danben",
     password="",
     database="admision_undac"
@@ -15,7 +15,7 @@ conexion = mysql.connector.connect(
 cursor = conexion.cursor()
 
 # Abrir el archivo
-libro = openpyxl.load_workbook("modalidades_excel.xlsx")
+libro = openpyxl.load_workbook("FORMATO_.ORDINARIO_II.xlsx")
 
 # Acceder a la hoja de trabajo activa
 hoja = libro.active
@@ -40,9 +40,9 @@ diccionario_terminado = diccionario[1:]
 # Actualizar la base de datos
 for fila in diccionario_terminado:
     sql = f"""
-        UPDATE resultados_2
+        UPDATE resultados
         SET CODIGO_MATRICULA = '{fila['codigo']}'
-        WHERE DNI = '{fila['dni']}';
+        WHERE DNI = '{fila['dni']}' AND PROCESO = 27
     """
     print("sql", sql)
     cursor.execute(sql)

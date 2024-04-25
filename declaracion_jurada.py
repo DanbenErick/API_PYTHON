@@ -19,7 +19,7 @@ def generar_declaracion_jurada(sede, proceso):
         canvas.restoreState()
 
     # API_NODE = 'http://143.198.105.92:3500'
-    API_NODE = 'http://172.16.10.44:3500'
+    API_NODE = 'http://172.19.144.1:3500'
     url = f"{API_NODE}/input-controls/obtener-declaraciones-juradas?sede={sede}&proceso={proceso}"
 
     print("PRINT UTILLLLLLL =====================>", url)
@@ -32,7 +32,7 @@ def generar_declaracion_jurada(sede, proceso):
         print(f"Error: {response.status_code}")
         return
 
-    pdf_filename = 'datos_reporte.pdf'
+    pdf_filename = f"declaracion_jurada_{sede}_{datos[0]['PROCESO']}.pdf"
     doc = SimpleDocTemplate(pdf_filename, pagesize=A4, leftMargin=30, rightMargin=30, topMargin=40, bottomMargin=40)
     content = []
 
@@ -156,5 +156,14 @@ def generar_declaracion_jurada(sede, proceso):
     doc.build(content, onFirstPage=footer, onLaterPages=footer)
     print(f"El archivo '{pdf_filename}' ha sido creado exitosamente.")
 
-generar_declaracion_jurada('CERRO DE PASCO', 27)
+# generar_declaracion_jurada('tarma', 16)
+# generar_declaracion_jurada('pasco', 16)
+# generar_declaracion_jurada('la merced', 16)
+# generar_declaracion_jurada('oxapampa', 16)
+# generar_declaracion_jurada('yanahuanca', 16)
+# generar_declaracion_jurada('oxapampa', 22)
+# generar_declaracion_jurada('tarma', 22)
+# generar_declaracion_jurada('Constitucion', 22)
+# generar_declaracion_jurada('Yanahuanca', 22)
+# generar_declaracion_jurada('Puerto Bermudez', 22)
 
