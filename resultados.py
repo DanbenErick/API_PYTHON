@@ -277,4 +277,4 @@ def generar_pdf_resultados(id_proceso):
     return f"{tiempo_documento}.pdf"
 
 
-generar_pdf_resultados(27)
+# generar_pdf_resultados(27)
