@@ -357,7 +357,7 @@ def generar_constancia_por_estudiante(proceso, dni, tipo_documento='ORIGINAL'):
       ['Facultad: ', datos.get('FACULTAD', '').upper()],
       ['Proceso: ', datos.get('NOMBRE_PROCESO', '').upper()],
       ['Promedio:', datos.get('PROMEDIO', '').upper()],
-      ['Modalidad: ', datos.get('MODALIDAD', '')],
+      ['Modalidad: ', datos.get('MODALIDAD', 'PRESENCIAL')],
       ['Programa de Estudios: :', datos.get('CARRERA', '').upper()],
       ['Semestre de inicio:', '2024 - A'.upper()],
       ['Merito:', f"{datos.get('ORDEN_MERITO_1', '')}".upper()],
