@@ -542,5 +542,6 @@ def generar_pdf_resultados_final_examen_cepre(id_proceso, cordinador):
     return f"{tiempo_documento}.pdf"
 
 
-generar_pdf_resultados_primer_examen_cepre(27, 'Profesor')
-generar_pdf_resultados_final_examen_cepre(27, 'Profesor')
+# generar_pdf_resultados_primer_examen_cepre(27, 'Profesor')
+# generar_pdf_resultados_final_examen_cepre(27, 'Profesor')
+# 
