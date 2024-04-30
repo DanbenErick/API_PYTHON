@@ -7,6 +7,8 @@ from padron import generar_pdf_service, generar_pdf_bloque_service
 from resultados import generar_pdf_resultados
 from constancia import generar_constancias_por_proceso, generar_constancia_por_estudiante
 from reporte_cordinador import generar_reporte_por_cordinador
+from reporte_aulas import generar_reporte_por_aula
+
 import json
 app = FastAPI()
 
@@ -80,6 +82,13 @@ async def generar_constancia_estudiante(id_proceso, dni, tipo_documento):
 async def generar_reporte_cordinador(id_proceso, dni):
     try:
         pdf_reporte = generar_reporte_por_cordinador(id_proceso, dni)
+        return FileResponse(pdf_reporte, media_type='application/pdf', filename=pdf_reporte)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+@app.get('/generar-reporte-aula')
+async def generar_reporte_aula(proceso, aula):
+    try:
+        pdf_reporte = generar_reporte_por_aula(proceso, aula)
         return FileResponse(pdf_reporte, media_type='application/pdf', filename=pdf_reporte)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
