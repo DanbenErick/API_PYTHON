@@ -10,13 +10,22 @@ import requests
 from reportlab.lib.utils import ImageReader
 import os
 from datetime import datetime
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_host = os.getenv('API_NODE')
+
+
 COMISION_DOCENTE = 'Dr. Ricardo Arturo GUARDIAN CHAVEZ'
 # import mysql.connector
 def generar_pdf_resultados_primer_examen_cepre(id_proceso, cordinador):
     image_no_ingreso = Image('imagenes/logo-undac.png', width=0.3*inch, height=0.3*inch)
     # url_host_api = 'http://143.198.105.92:3500'
     # url_host_api = 'http://172.19.144.1:3500'
-    url_host_api = 'http://172.19.144.1:3500'
+    url_host_api = api_host
     
     def add_footer(canvas, doc):
         canvas.saveState()
@@ -79,7 +88,7 @@ def generar_pdf_resultados_primer_examen_cepre(id_proceso, cordinador):
         canvas.drawString(doc.width - 1.4 * inch, 1.40 * inch, f"Fecha del Proceso: {fecha_actual}")
 
     # conn.close()
-    url = f"{url_host_api}/input-controls/obtener-resultados-cepre-primer-examen/{id_proceso}"
+    url = f"http://{url_host_api}:3500/input-controls/obtener-resultados-cepre-primer-examen/{id_proceso}"
     print("URL de datos" + url)
     resultados = []
     try:
@@ -202,7 +211,7 @@ def generar_pdf_resultados_primer_examen_cepre(id_proceso, cordinador):
             if resultado['ESTADO'] == "INGRESO":
                 
                 # foto_path_temp = f"http://172.206.234.125:3500/{resultado['DNI']}/{resultado['DNI']}.jpeg"
-                foto_path_temp = f"{url_host_api}/{resultado['DNI']}/{resultado['DNI']}.jpeg"
+                foto_path_temp = f"http://{url_host_api}:3500/{resultado['DNI']}/{resultado['DNI']}.jpeg"
                 print("foto "+foto_path_temp)
                 
                 response = requests.get(foto_path_temp)
@@ -217,7 +226,7 @@ def generar_pdf_resultados_primer_examen_cepre(id_proceso, cordinador):
                     imagen = Image(temp_filename, width=1.0*inch, height=1.0*inch)
                     
                 else:
-                    url_temporal = f'{url_host_api}/defecto/defecto.jpeg'
+                    url_temporal = f'http://{url_host_api}:3500/defecto/defecto.jpeg'
                     print("foto "+url_temporal)
                     response = requests.get(url_temporal)
                     print('Peticion foto por defecto ' + url_temporal)
@@ -281,7 +290,8 @@ def generar_pdf_resultados_final_examen_cepre(id_proceso, cordinador):
     image_no_ingreso = Image('imagenes/logo-undac.png', width=0.3*inch, height=0.3*inch)
     # url_host_api = 'http://143.198.105.92:3500'
     # url_host_api = 'http://172.19.144.1:3500'
-    url_host_api = 'http://172.19.144.1:3500'
+    # url_host_api = 'http://172.19.144.1:3500'
+    url_host_api = api_host
     
     def add_footer(canvas, doc):
         canvas.saveState()
@@ -344,7 +354,7 @@ def generar_pdf_resultados_final_examen_cepre(id_proceso, cordinador):
         canvas.drawString(doc.width - 1.4 * inch, 1.40 * inch, f"Fecha del Proceso: {fecha_actual}")
 
     # conn.close()
-    url = f"{url_host_api}/input-controls/obtener-resultados-ordinario/{id_proceso}"
+    url = f"http://{url_host_api}:3500/input-controls/obtener-resultados-ordinario/{id_proceso}"
     print("URL de datos" + url)
     resultados = []
     try:
@@ -467,7 +477,7 @@ def generar_pdf_resultados_final_examen_cepre(id_proceso, cordinador):
             if resultado['ESTADO'] == "INGRESO":
                 
                 # foto_path_temp = f"http://172.206.234.125:3500/{resultado['DNI']}/{resultado['DNI']}.jpeg"
-                foto_path_temp = f"{url_host_api}/{resultado['DNI']}/{resultado['DNI']}.jpeg"
+                foto_path_temp = f"http://{url_host_api}:3500/{resultado['DNI']}/{resultado['DNI']}.jpeg"
                 print("foto "+foto_path_temp)
                 
                 response = requests.get(foto_path_temp)
@@ -482,7 +492,7 @@ def generar_pdf_resultados_final_examen_cepre(id_proceso, cordinador):
                     imagen = Image(temp_filename, width=1.0*inch, height=1.0*inch)
                     
                 else:
-                    url_temporal = f'{url_host_api}/defecto/defecto.jpeg'
+                    url_temporal = f'http://{url_host_api}:3500/defecto/defecto.jpeg'
                     print("foto "+url_temporal)
                     response = requests.get(url_temporal)
                     print('Peticion foto por defecto ' + url_temporal)
@@ -544,4 +554,3 @@ def generar_pdf_resultados_final_examen_cepre(id_proceso, cordinador):
 
 # generar_pdf_resultados_primer_examen_cepre(27, 'Profesor')
 # generar_pdf_resultados_final_examen_cepre(27, 'Profesor')
-# 

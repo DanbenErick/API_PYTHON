@@ -16,12 +16,20 @@ from reportlab.platypus import Image
 from datetime import date
 import time
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_host = os.getenv('API_NODE')
+
+
 # from fontTools import ttFont
 
 # font = ttFont.open("Aptos.ttf")
 # font.registerFont(force=True)
 # URL_API = '172.16.10.51'
-URL_API = '192.168.1.3'
+URL_API = api_host
 # URL_API = '172.19.144.1'
 
 def generar_constancias_por_proceso(proceso, tipo_documento='ORIGINAL'):

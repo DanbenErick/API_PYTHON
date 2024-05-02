@@ -7,6 +7,12 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.utils import ImageReader
 from reportlab.lib.units import inch
 import time
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_host = os.getenv('API_NODE')
 
 def truncar_texto(texto, longitud_maxima):
     if len(texto) <= longitud_maxima:
@@ -14,7 +20,8 @@ def truncar_texto(texto, longitud_maxima):
     else:
         return texto[:longitud_maxima] + "..."
 
-URL_API = '172.19.144.1'
+URL_API = api_host
+
 def generar_reporte_por_aula(proceso, aula):
     response = requests.get(f'http://{URL_API}:3500/input-controls/obtener-reporte-aulas?PROCESO={proceso}&AULA={aula}')
     tiempo_documento = int(round(time.time() * 1000))
@@ -24,7 +31,7 @@ def generar_reporte_por_aula(proceso, aula):
         print(f"Error: {response.status_code}")
         # return
     turno_p = datos[0]['TURNO']
-    data_c = [[f"Relacion de estudiantes inscritos en el aula: {datos[0]['NOMBRE_AULA']} - Turno: {'MAÑANA' if turno_p == 'M' else 'TARDE'}"]]
+    data_c = [[f"{datos[0]['NOMBRE_PROCESO']} - Relacion de estudiantes inscritos en el aula: {datos[0]['NOMBRE_AULA']} - Turno: {'MAÑANA' if turno_p == 'M' else 'TARDE'}"]]
 
     # Datos para la tabla
     data = [

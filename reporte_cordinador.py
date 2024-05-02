@@ -8,9 +8,16 @@ from reportlab.lib.utils import ImageReader
 from reportlab.lib.units import inch
 import time
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_host = os.getenv('API_NODE')
+
 
 def generar_reporte_por_cordinador(proceso, dni):
-    URL_API = '143.198.105.92'
+    URL_API = api_host
     response = requests.get(f'http://{URL_API}:3500/input-controls/obtener-inscritos-por-cordinador?dni={dni}&proceso={proceso}')
     tiempo_documento = int(round(time.time() * 1000))
     if response.status_code == 200:

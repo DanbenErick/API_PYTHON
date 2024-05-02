@@ -6,17 +6,25 @@ from datetime import datetime
 import requests
 import json
 import os
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_host = os.getenv('API_NODE')
+
 # from dotenv import load_dotenv
 
 # load_dotenv()
 PROCESO = 'ORDINARIO II - 2024'
 SEDE = 'PASCO'
 # API_NODE = 'http://143.198.105.92:3500'
-API_NODE = 'http://143.198.105.92:3500'
+API_NODE = api_host
 
 def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
     print ("recibido ", id_proceso, inicio, fin, area, aula, fecha, sede, pdf)
-    url = f"{API_NODE}/input-controls/obtener-padron-estudiantes?id_proceso={id_proceso}&inicio={inicio}&fin={fin}&area={area}&aula={aula}&fecha={fecha}&sede={sede}"
+    url = f"http://{API_NODE}:3500/input-controls/obtener-padron-estudiantes?id_proceso={id_proceso}&inicio={inicio}&fin={fin}&area={area}&aula={aula}&fecha={fecha}&sede={sede}"
     
 
     print("PRINT UTILLLLLLL =====================>",url)
@@ -43,8 +51,8 @@ def generar_pdf_service(id_proceso, inicio, fin, area, aula, fecha, sede, pdf):
 
     for i, data in enumerate(datos):
         # http_imagen = f'http:192.168.1.5:3500/{data['DNI']}/{data['DNI']}.jpg'
-        url_image = f"{API_NODE}/{data['DNI']}/{data['DNI']}.jpeg"
-        url_image_defecto = f"{API_NODE}/defecto/defecto.jpeg"
+        url_image = f"http://{API_NODE}:3500/{data['DNI']}/{data['DNI']}.jpeg"
+        url_image_defecto = f"http://{API_NODE}:3500/defecto/defecto.jpeg"
         print("URL image => ", url_image)
         try:
             img_src = utils.ImageReader(url_image)
@@ -111,7 +119,7 @@ def generar_pdf_bloque_service(data, pdf):
     width, height = A4
     # print(f"Ingreso:  {data[0]}")
     for item in data:
-        url = f"{API_NODE}/input-controls/obtener-padron-estudiantes?id_proceso={item['id_proceso']}&inicio={item['inicio']}&fin={item['cantidad']}&area={item['area']}&aula={item['aula']}&fecha={item['aula']}&sede={item['sede']}"
+        url = f"http://{API_NODE}:3500/input-controls/obtener-padron-estudiantes?id_proceso={item['id_proceso']}&inicio={item['inicio']}&fin={item['cantidad']}&area={item['area']}&aula={item['aula']}&fecha={item['aula']}&sede={item['sede']}"
         # url = f"http://172.16.10.11:3500/input-controls/obtener-padron-estudiantes?id_proceso={item['id_proceso']}&inicio={item['inicio']}&fin={item['cantidad']}&area={item['area']}&aula={item['aula']}&fecha={item['aula']}&sede={item['sede']}"
         print(url)
         # url = f"http://192.168.1.5:3500/input-controls/obtener-padron-estudiantes/{inicio}/{fin}/{area}"
@@ -144,8 +152,8 @@ def generar_pdf_bloque_service(data, pdf):
             # http_imagen = f'http:192.168.1.5:3500/{data['DNI']}/{data['DNI']}.jpg'
             # url_image = f"http://172.16.10.11:3500/{data['DNI']}/{data['DNI']}.jpeg"
             # url_image_defecto = f"http://172.16.10.11:3500//defecto/defecto.jpeg"
-            url_image = f"{API_NODE}/{data['DNI']}/{data['DNI']}.jpeg"
-            url_image_defecto = f"{API_NODE}/defecto/defecto.jpeg"
+            url_image = f"http://{API_NODE}:3500/{data['DNI']}/{data['DNI']}.jpeg"
+            url_image_defecto = f"http://{API_NODE}:3500/defecto/defecto.jpeg"
             print("URL image => ", url_image)
             try:
                 img_src = utils.ImageReader(url_image)

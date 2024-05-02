@@ -8,6 +8,13 @@ import datetime
 import requests
 import time
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_host = os.getenv('API_NODE')
+
 def generar_declaracion_jurada(sede, proceso):
   
     def footer(canvas, doc):
@@ -19,8 +26,8 @@ def generar_declaracion_jurada(sede, proceso):
         canvas.restoreState()
 
     # API_NODE = 'http://143.198.105.92:3500'
-    API_NODE = 'http://172.19.144.1:3500'
-    url = f"{API_NODE}/input-controls/obtener-declaraciones-juradas?sede={sede}&proceso={proceso}"
+    API_NODE = api_host
+    url = f"http://{API_NODE}:3500/input-controls/obtener-declaraciones-juradas?sede={sede}&proceso={proceso}"
 
     print("PRINT UTILLLLLLL =====================>", url)
 
@@ -38,8 +45,8 @@ def generar_declaracion_jurada(sede, proceso):
 
     for i, data in enumerate(datos):
         # image_path = f'imagenes/fotos/{codigo_postulante}.jpeg'        
-        image_path = f"{API_NODE}/{data['CODIGO DE POSTULANTE']}/{data['CODIGO DE POSTULANTE']}.jpeg"
-        # image_path_defecto = f"{API_NODE}/defecto/defecto.jpeg"
+        image_path = f"http://{API_NODE}:3500/{data['CODIGO DE POSTULANTE']}/{data['CODIGO DE POSTULANTE']}.jpeg"
+        # image_path_defecto = f"http://{API_NODE}:3500/defecto/defecto.jpeg"
         foto_path_temp = image_path
         
         response = requests.get(foto_path_temp)
@@ -53,7 +60,7 @@ def generar_declaracion_jurada(sede, proceso):
             imagen = Image(temp_filename, width=1.5*inch, height=1.5*inch)
             
         else:
-            url_temporal = f'{API_NODE}/defecto/defecto.jpeg'
+            url_temporal = f'http://{API_NODE}:3500/defecto/defecto.jpeg'
             print("foto "+url_temporal)
             response = requests.get(url_temporal)
             print('Peticion foto por defecto ' + url_temporal)
@@ -67,7 +74,7 @@ def generar_declaracion_jurada(sede, proceso):
         # try:
         #   image = Image(image_path, width=1.5*inch, height=1.5*inch)
         # except:
-        #   image_path_defecto = f"{API_NODE}/defecto/defecto.jpeg"
+        #   image_path_defecto = f"http://{API_NODE}:3500/defecto/defecto.jpeg"
         #   image = Image(image_path, width=1.5*inch, height=1.5*inch)
           
         data_cabe = [['', 'CÓDIGO POSTULANTE', '3'],
