@@ -10,15 +10,22 @@ import requests
 from reportlab.lib.utils import ImageReader
 import os
 from datetime import datetime
-COMISION_DOCENTE = 'Mg. Nelson MONTALVO CARHUARICRA'
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_host = os.getenv('API_NODE')
+
+COMISION_DOCENTE = 'Mg. Juan Antonio RICALDI BALDEON'
 # import mysql.connector
 def generar_pdf_resultados(id_proceso):
     image_no_ingreso = Image('imagenes/logo-undac.png', width=0.3*inch, height=0.3*inch)
-    # url_host_api = 'http://143.198.105.92:3500'
-    # url_host_api = 'http://172.19.144.1:3500'
-    # url_host_api = 'http://172.19.144.1:3500'
     url_host_api = api_host
-    
+    url = f"http://{url_host_api}:3500/input-controls/obtener-resultados-ordinario/{id_proceso}"
+    print("URL de datos" + url)
+    resultados = []
     def add_footer(canvas, doc):
         canvas.saveState()
         page_num = canvas.getPageNumber()
@@ -26,10 +33,11 @@ def generar_pdf_resultados(id_proceso):
         canvas.setFont("Helvetica", 9)
         canvas.drawString(0.5 * inch, 0.3 * inch, text)
 
+        nombre_proceso = resultados[0]['NOMBRE_PROCESO']
 
         footer_pdf = [
             ["Elaborado por:"],
-            [f"Comisión de Calificación y Publicación de Resultados\ndel ORDINARIO II 2024"],
+            [f"Comisión de Calificación y Publicación de Resultados\ndel {nombre_proceso}"],
             # [f"DIRECTOR DE POSGRADO \ndel POSGRADO COMPLEMENTARIO I - 2024"],
             [COMISION_DOCENTE],
             ["\nFirma:"]
@@ -80,9 +88,6 @@ def generar_pdf_resultados(id_proceso):
         canvas.drawString(doc.width - 1.4 * inch, 1.40 * inch, f"Fecha del Proceso: {fecha_actual}")
 
     # conn.close()
-    url = f"http://{url_host_api}:3500/input-controls/obtener-resultados-ordinario/{id_proceso}"
-    print("URL de datos" + url)
-    resultados = []
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -278,4 +283,4 @@ def generar_pdf_resultados(id_proceso):
     return f"{tiempo_documento}.pdf"
 
 
-# generar_pdf_resultados(27)
+# generar_pdf_resultados(22)
